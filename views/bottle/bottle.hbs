@@ -1,0 +1,23 @@
+{{#if data}}
+<div id="filter-items">
+    {{#each data}}
+    <div id="{{_id}}" class="item-display">
+        <h6>
+            {{size}} {{type}}
+        </h6>
+        <p>${{price}}</p>
+        <a href="#"><img src="/images/18sm-black.jpg"></a>
+        <p></p>
+        <div class="color-selection">
+            {{#each options as | col |}}
+            <button id="{{col.unique_id}}" name="{{col.name}}" value="{{col.url}}" data-stock="{{col.stock}}"
+                style="background-color:{{col.hex}};"></button>
+            {{/each}}
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{else}}
+<h6>This page seems to be dehydrated!</h6>
+<p>Please drink some water and try again.</p>
+{{/if}}

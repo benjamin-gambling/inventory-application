@@ -1,0 +1,42 @@
+<h3><u>{{title}}</u></h3>
+<br />
+<form action="" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="product"><strong>Product:</strong></label>
+        <select name="product" id="product" class="form-control" type="select" placeholder="Select product"
+            required="true">
+            {{#each product_list as |prod|}}
+            <option value="{{prod._id}}" {{#if ../bottle}} {{#if_eq prod._id ../bottle.product._id }}
+                selected="selected" {{/if_eq}} {{/if}}>{{prod.size}} {{prod.type}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="color"><strong>Color:</strong></label>
+        <select name="color" id="color" class="form-control" type="select" placeholder="Select color" required="true">
+            {{#each color_list as |col|}}
+            <option value="{{col._id}}" {{#if ../bottle}} {{#if_eq col._id ../bottle.color._id }} selected="selected"
+                {{/if_eq}} {{/if}}>{{col.name}}
+            </option>
+            {{/each}}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="inventory"><strong>Inventory:</strong></label>
+        <input name="inventory" id="inventory" class="form-control" type="number" {{#if bottle}}
+            value="{{bottle.inventory}}" {{/if}} required="true">
+    </div>
+    <div class="form-group">
+        {{#if bottle}}
+        <strong>Current Image:</strong>
+        <img name="image" id="image" type="image" src="/{{bottle.file}}">
+        <br />
+        <label for="file"><strong>Upload New Image:</strong></label>
+        <input name="file" id="file" class="form-control" type="file">
+        {{else}}
+        <label for="file"><strong>Image:</strong></label>
+        <input name="file" id="file" class="form-control" type="file" required="true">
+        {{/if}}
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>

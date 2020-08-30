@@ -1,0 +1,156 @@
+{{#if admin}}
+<div class="admin-controls">
+    <div class="bottle-controls">
+        <div class="control-title">
+            <h3>BOTTLES</h3>
+            <div class="create-button"><a href="/shop/bottle/create"><svg width="1em" height="1em" viewBox="0 0 16 16"
+                        class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z" />
+                    </svg></a></div>
+        </div>
+        <div class="control-collapse">
+            {{#if bottle_list}}
+            <table>
+                {{#each bottle_list as |bot|}}
+                <tr>
+                    <td>
+                        {{bot.product.size}} {{bot.product.type}} | {{bot.color.name}} |&nbsp;
+                        {{#if bot.inventory}}
+                        Stock: {{bot.inventory}}
+                        {{else}}
+                        <span class="text-danger"> OUT OF STOCK</span>
+                        {{/if}}
+                    </td>
+                    <td class="destructive-controls">
+                        <a href="/shop/bottle/{{bot._id}}/update">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" />
+                                <path fill-rule="evenodd"
+                                    d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z" />
+                            </svg>
+                        </a>
+                        <a class="delete" href="/shop/bottle/{{bot._id}}/delete">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z" />
+                                <path fill-rule="evenodd"
+                                    d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z" />
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
+            {{else}}
+            <p>NO BOTTLES</p>
+            {{/if}}
+        </div>
+    </div>
+    <div class="product-controls">
+        <div class="control-title">
+            <h3>PRODUCTS</h3>
+            <div class="create-button"><a href="/shop/product/create"><svg width="1em" height="1em" viewBox="0 0 16 16"
+                        class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z" />
+                    </svg></a></div>
+        </div>
+        <div class="control-collapse">
+            {{#if product_list}}
+            <table>
+                {{#each product_list as |prod|}}
+                <tr>
+                    <td>
+                        {{prod.size}} {{prod.type}} | ${{prod.price}}
+                    </td>
+                    <td class="destructive-controls">
+                        <a href="/shop/product/{{prod._id}}/update">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" />
+                                <path fill-rule="evenodd"
+                                    d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z" />
+                            </svg>
+                        </a>
+                        <a class="delete" href="/shop/product/{{prod._id}}/delete">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z" />
+                                <path fill-rule="evenodd"
+                                    d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z" />
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
+            {{else}}
+            <p>NO PRODUCTS</p>
+            {{/if}}
+        </div>
+    </div>
+    <div class="color-controls">
+        <div class="control-title">
+            <h3>COLORS</h3>
+            <div class="create-button"><a href="/shop/color/create"><svg width="1em" height="1em" viewBox="0 0 16 16"
+                        class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z" />
+                    </svg></a></div>
+        </div>
+        <div class="control-collapse">
+            {{#if color_list}}
+            <table>
+                {{#each color_list as |col|}}
+                <tr>
+                    <td>
+                        <div class="show-color" style="background-color:{{col.hex}};"></div>{{col.name}}
+                    </td>
+                    <td class="destructive-controls">
+                        <a href="/shop/color/{{col._id}}/update">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" />
+                                <path fill-rule="evenodd"
+                                    d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z" />
+                            </svg>
+                        </a>
+                        <a class="delete" href="/shop/color/{{col._id}}/delete">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z" />
+                                <path fill-rule="evenodd"
+                                    d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z" />
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
+            {{else}}
+            <p>NO COLORS</p>
+            {{/if}}
+
+        </div>
+    </div>
+</div>
+{{else}}
+<form action="" method="POST">
+    <div class="form-group">
+        {{#if errors}}
+        <p class="text-danger">Incorrect Password!</p>
+        {{/if}}
+        <input class="form-control" name="password" type="password" placeholder="Password" />
+        <button type="submit" class="btn btn-secondary">LOG IN</button>
+
+    </div>
+</form>
+{{/if}}

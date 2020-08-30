@@ -1,0 +1,15 @@
+<h3><u>{{title}}</u></h3>
+<br />
+<form action="" method="POST">
+    <div class="form-group">
+        <label for="name"><strong>Name:</strong></label>
+        <input name="name" id="name" class="form-control" type="text" required="true" {{#if color}}
+            value="{{color.name}}" {{/if}} placeholder="Enter color name..">
+    </div>
+    <div class="form-group">
+        <label for="hex"><strong>Color:</strong></label>
+        <input name="hex" id="hex" class="form-control" type="color" {{#if color}} value="{{color.hex}}" {{else}}
+            value="#333333" {{/if}} required="true">
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>

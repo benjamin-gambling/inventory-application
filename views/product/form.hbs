@@ -1,0 +1,20 @@
+<h3><u>{{title}}</u></h3>
+<br />
+<form action="" method="POST">
+    <div class="form-group">
+        <label for="size"><strong>Size:</strong></label>
+        <input name="size" id="size" class="form-control" type="text" {{#if product}} value="{{product.size}}" {{/if}}
+            required="true" placeholder="Size in oz..">
+    </div>
+    <div class="form-group">
+        <label for="type"><strong>Type:</strong></label>
+        <input name="type" id="type" class="form-control" type="text" {{#if product}} value="{{product.type}}" {{/if}}
+            required="true" placeholder="Type of bottle..">
+    </div>
+    <div class="form-group">
+        <label for="price"><strong>Price:</strong></label>
+        <input name="price" id="price" class="form-control" type="number" step="0.01" {{#if product}}
+            value="{{product.price}}" {{/if}} required=" true">
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
