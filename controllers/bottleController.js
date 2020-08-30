@@ -7,7 +7,7 @@ const Color = require("../models/color");
 const validator = require("express-validator");
 const async = require("async");
 
-const tools = require("./tools");
+const tools = require("javascripts/tools.js");
 
 // HOME PAGE
 exports.index = (req, res) => {
@@ -59,7 +59,6 @@ exports.admin_login = [
     const errors = validator.validationResult(req);
 
     if (!errors.isEmpty()) {
-      console.log(errors);
       res.render("admin", {
         title: "Admin",
         class: "admin",
