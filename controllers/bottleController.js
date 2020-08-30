@@ -7,10 +7,7 @@ const Color = require("../models/color");
 const validator = require("express-validator");
 const async = require("async");
 
-let adminLoggedIn = false;
-let bottles;
-let products;
-let colors;
+const tools = require("./tools");
 
 // HOME PAGE
 exports.index = (req, res) => {
@@ -19,7 +16,7 @@ exports.index = (req, res) => {
 
 // ADMIN PAGE
 exports.admin = (req, res, next) => {
-  if (adminLoggedIn) {
+  if (tools.adminLoggedIn) {
     async.parallel(
       {
         bottle_list: (callback) =>
@@ -33,7 +30,7 @@ exports.admin = (req, res, next) => {
         res.render("admin", {
           title: "Admin",
           class: "admin",
-          admin: adminLoggedIn,
+          admin: tools.adminLoggedIn,
           bottle_list: results.bottle_list,
           product_list: results.product_list,
           color_list: results.color_list,
@@ -44,7 +41,7 @@ exports.admin = (req, res, next) => {
     res.render("admin", {
       title: "Admin",
       class: "admin",
-      admin: adminLoggedIn,
+      admin: tools.adminLoggedIn,
     });
   }
 };
@@ -80,7 +77,7 @@ exports.admin_login = [
         (err, results) => {
           if (err) return next(err);
 
-          adminLoggedIn = true;
+          tools.adminLoggedIn = true;
 
           res.render("admin", {
             title: "Admin",
@@ -88,7 +85,7 @@ exports.admin_login = [
             product_list: results.product_list,
             color_list: results.color_list,
             class: "admin",
-            admin: adminLoggedIn,
+            admin: tools.adminLoggedIn,
           });
         }
       );

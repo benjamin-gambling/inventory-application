@@ -1,3 +1,8 @@
+module.exports = {
+  adminLoggedIn: false,
+  logInOut: (bool) => (adminLoggedIn = bool),
+};
+
 // CHANGES MENU STYLES ON CLICKS
 const navbutton = document.getElementById("filter-search");
 
