@@ -10,8 +10,6 @@ var sassMiddleware = require("node-sass-middleware");
 
 const hbs = require("hbs");
 
-const tools = require("./tools");
-
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const shopRouter = require("./routes/shop");
