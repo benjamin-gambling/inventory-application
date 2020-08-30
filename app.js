@@ -14,7 +14,12 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const shopRouter = require("./routes/shop");
 
+var compression = require("compression");
+var helmet = require("helmet");
+
 var app = express();
+
+app.use(helmet());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -52,6 +57,8 @@ app.use(
     sourceMap: true,
   })
 );
+
+app.use(compression()); //Compress all routes
 
 app.use(express.static(path.join(__dirname, "public")));
 
