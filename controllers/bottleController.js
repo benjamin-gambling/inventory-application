@@ -7,8 +7,6 @@ const Color = require("../models/color");
 const validator = require("express-validator");
 const async = require("async");
 
-const tools = require("../public/javascripts/logged.js");
-
 // HOME PAGE
 exports.index = (req, res) => {
   res.render("index", { title: "Home", class: "home" });
@@ -16,37 +14,14 @@ exports.index = (req, res) => {
 
 // ADMIN PAGE
 exports.admin = (req, res, next) => {
-  if (tools.adminLoggedIn) {
-    async.parallel(
-      {
-        bottle_list: (callback) =>
-          Bottle.find(callback).populate("product").populate("color"),
-        product_list: (callback) => Product.find(callback),
-        color_list: (callback) => Color.find(callback),
-      },
-      (err, results) => {
-        if (err) return next(err);
-
-        res.render("admin", {
-          title: "Admin",
-          class: "admin",
-          admin: tools.adminLoggedIn,
-          bottle_list: results.bottle_list,
-          product_list: results.product_list,
-          color_list: results.color_list,
-        });
-      }
-    );
-  } else {
-    res.render("admin", {
-      title: "Admin",
-      class: "admin",
-      admin: tools.adminLoggedIn,
-    });
-  }
+  res.render("admin", {
+    title: "Admin",
+    class: "admin",
+    admin: false,
+  });
 };
 
-//LOG IN ??????
+//LOG IN
 exports.admin_login = [
   validator
     .check("password", "Incorrect Password!")
@@ -76,15 +51,13 @@ exports.admin_login = [
         (err, results) => {
           if (err) return next(err);
 
-          tools.adminLoggedIn = true;
-
           res.render("admin", {
             title: "Admin",
             bottle_list: results.bottle_list,
             product_list: results.product_list,
             color_list: results.color_list,
             class: "admin",
-            admin: tools.adminLoggedIn,
+            admin: true,
           });
         }
       );
