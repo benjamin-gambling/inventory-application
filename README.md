@@ -55,7 +55,7 @@ Here is the working live demo:
 
   <img width="64" height="64" src="readme_img/handlebars_logo.png">
   <img width="64" height="64" src="readme_img/bootstrap.png">
-  <img width="64" height="64" src="readme_img/node_logo.png">
+  <img width="64" height="64" src="readme_img/node_logo.jpeg">
   <img width="175" height="64" src="readme_img/ExpressJS.png">
   <img width="64" height="64" src="readme_img/mongodb.png">
   <img width="64" height="64" src="readme_img/heroku.png">
