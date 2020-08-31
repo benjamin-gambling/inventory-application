@@ -7,7 +7,7 @@ const Color = require("../models/color");
 const validator = require("express-validator");
 const async = require("async");
 
-const tools = require("../public/javascripts/tools.js");
+const tools = require("../public/javascripts/logged.js");
 
 // HOME PAGE
 exports.index = (req, res) => {
