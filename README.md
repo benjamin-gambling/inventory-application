@@ -1,10 +1,10 @@
 # Inventory Application
 
-This project was completed as part of The Odin Project - NodeJS Curriculum. The assignment brief was to build a functioning inventory management application for a business using the CRUD method and following the MVC design pattern. You can find the full list of project requirements [here](https://www.theodinproject.com/courses/nodejs/lessons/inventory-application).
+After completing a number tutorials and creating some siple projects using node and express. i decided to create my own imaginary business which simulated a real user experience where products could be purchased and the stock would be updated in real time, as well i wanted to add owner features that meant they could create new items and update old ones. I decided my business would be to sell water bottles but wanted to design it so that if desired it could be change to sell pretty much anything without having to be built from scratch again. To do this i used the CRUD method using the MVC design pattern.
 
 # ![Inventory Application](readme_img/screenshot.png)
 
-I choose to make a water bottle business, the bottles were built up of two models, color and product type. These were used to create, update bottles and then were unable to be deleted while still in use. I made all destructive actions only accessible via an admin page which is password protected. I added the ability to upload images of the product to make my content more visually appealing.
+The bottles were built up of two models, color and product type. These were used to create, update bottles and then were unable to be deleted while still in use. I made all destructive actions only accessible via an admin page which is password protected. I added the ability to upload images of the product to make my content more visually appealing.
 
 i made the stock visible and created a buy function to simulate the site in use, with real time stock updates and the pages dynamically changing when items 'sell out'.
 
