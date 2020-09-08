@@ -339,8 +339,26 @@ exports.bottle_delete = (req, res, next) => {
 
     Bottle.findByIdAndDelete(req.params.id, (err) => {
       if (err) return next(err);
-    });
+      async.parallel(
+        {
+          bottle_list: (callback) =>
+            Bottle.find(callback).populate("product").populate("color"),
+          product_list: (callback) => Product.find(callback),
+          color_list: (callback) => Color.find(callback),
+        },
+        (err, results) => {
+          if (err) return next(err);
 
-    res.redirect("/shop/admin");
+          res.render("admin", {
+            title: "Admin",
+            bottle_list: results.bottle_list,
+            product_list: results.product_list,
+            color_list: results.color_list,
+            class: "admin",
+            admin: true,
+          });
+        }
+      );
+    });
   });
 };

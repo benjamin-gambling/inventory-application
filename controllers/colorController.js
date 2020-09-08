@@ -1,5 +1,6 @@
 const Color = require("../models/color");
 const Bottle = require("../models/bottle");
+const Product = require("../models/product");
 
 const async = require("async");
 const validator = require("express-validator");
@@ -47,7 +48,26 @@ exports.color_create_post = [
         } else {
           color.save((err) => {
             if (err) return next(err);
-            res.redirect("/shop/admin");
+            async.parallel(
+              {
+                bottle_list: (callback) =>
+                  Bottle.find(callback).populate("product").populate("color"),
+                product_list: (callback) => Product.find(callback),
+                color_list: (callback) => Color.find(callback),
+              },
+              (err, results) => {
+                if (err) return next(err);
+
+                res.render("admin", {
+                  title: "Admin",
+                  bottle_list: results.bottle_list,
+                  product_list: results.product_list,
+                  color_list: results.color_list,
+                  class: "admin",
+                  admin: true,
+                });
+              }
+            );
           });
         }
       });
@@ -96,7 +116,26 @@ exports.color_update_post = [
     } else {
       Color.findByIdAndUpdate(req.params.id, color, {}, (err) => {
         if (err) return next(err);
-        res.redirect("/shop/admin");
+        async.parallel(
+          {
+            bottle_list: (callback) =>
+              Bottle.find(callback).populate("product").populate("color"),
+            product_list: (callback) => Product.find(callback),
+            color_list: (callback) => Color.find(callback),
+          },
+          (err, results) => {
+            if (err) return next(err);
+
+            res.render("admin", {
+              title: "Admin",
+              bottle_list: results.bottle_list,
+              product_list: results.product_list,
+              color_list: results.color_list,
+              class: "admin",
+              admin: true,
+            });
+          }
+        );
       });
     }
   },
@@ -129,7 +168,26 @@ exports.color_delete = (req, res, next) => {
       Color.findByIdAndDelete(req.params.id, (err) => {
         if (err) return next(err);
       });
-      res.redirect("/shop/admin");
+      async.parallel(
+        {
+          bottle_list: (callback) =>
+            Bottle.find(callback).populate("product").populate("color"),
+          product_list: (callback) => Product.find(callback),
+          color_list: (callback) => Color.find(callback),
+        },
+        (err, results) => {
+          if (err) return next(err);
+
+          res.render("admin", {
+            title: "Admin",
+            bottle_list: results.bottle_list,
+            product_list: results.product_list,
+            color_list: results.color_list,
+            class: "admin",
+            admin: true,
+          });
+        }
+      );
     }
   );
 };
