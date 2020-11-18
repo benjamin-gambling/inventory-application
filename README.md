@@ -1,6 +1,6 @@
 # Inventory Application
 
-After completing a number tutorials and creating some siple projects using node and express, I decided to create my own imaginary business that focussed around managing inventory. I wanted this to simulated a real user experience where products could be purchased and the stock would be updated in real time, as well i wanted to add owner features that meant they could create new items and update old ones. I decided my business would be to sell water bottles but wanted to design it so that if desired it could be change to sell pretty much anything without having to be built from scratch again. To do this i used the CRUD method using the MVC design pattern.
+After completing a number tutorials and creating some simple projects using node and express, I decided to create my own imaginary business that focussed around managing inventory. I wanted this to simulated a real user experience where products could be purchased and the stock would be updated in real time, as well i wanted to add owner features that meant they could create new items and update old ones. I decided my business would be to sell water bottles but wanted to design it so that if desired it could be change to sell pretty much anything without having to be built from scratch again. To do this i used the CRUD method using the MVC design pattern.
 
 # ![Inventory Application](readme_img/screenshot.png)
 
